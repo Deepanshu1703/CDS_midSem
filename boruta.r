@@ -1,0 +1,18 @@
+library(MASS)
+fix(Boston)
+names(Boston)
+pairs(Boston)
+model1<-lm(medv~.,data=Boston)
+summary(model1)
+features<-c("zn","nox","rm","dis","rad","ptratio","black","lstat","medv")
+boston2<-Boston[features]
+model2<-lm(medv~.,data=boston2)
+summary(model2)
+library(Boruta)
+set.seed(123)
+boruta.train<-Boruta(medv~.,data=Boston)
+print(boruta.train)
+library(corrplot)
+corrplot(cor(Boston))
+lm.fit<-lm(medv~lstat,data = Boston)
+lm.fit
